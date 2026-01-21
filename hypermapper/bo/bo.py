@@ -72,7 +72,7 @@ def main(settings, black_box_function=None):
             if (
                 absolute_configuration_index
                 >= settings["design_of_experiment"]["number_of_samples"]
-            ):
+            ) and not settings["new_parameter_defaults"]:
                 break
             if (
                 not param_space.get_unique_hash_string_from_values(
@@ -87,7 +87,7 @@ def main(settings, black_box_function=None):
                     ),
                     0,
                 )
-                absolute_configuration_index = default_parameter_array.shape[0]
+        absolute_configuration_index += default_parameter_array.shape[0]
     ################################################
     # DOE
     ################################################
@@ -297,7 +297,7 @@ def main(settings, black_box_function=None):
                         fantasized_values = torch.tensor(
                             [
                                 model.get_mean_and_std(
-                                    preprocessed_best_configuration[0].unsqueeze(0),
+                                    preprocessed_best_configuration[0],
                                     False,
                                 )[0]
                                 for model in regression_models

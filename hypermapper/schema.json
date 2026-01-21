@@ -471,6 +471,11 @@
       "description": "Whether to start GP hyperparameter optimisation from different initial starting points. Slower, but yields better models.",
       "type": "boolean"
     },
+    "new_parameter_defaults": {
+      "default": false,
+      "description": "Whether the bo has new parameter defaults to test. If true, the bo will run the new parameters in the next iteration.",
+      "type": "boolean"
+    },
     "hyperparameter_optimization_iterations": {
       "default": 5,
       "description": "Number of iterations to run MLE for.",
